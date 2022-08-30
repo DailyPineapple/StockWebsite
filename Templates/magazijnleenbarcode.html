@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="magazijn-block">
+    <form class="gebruiker-create-form" method="post">
+        <h2>Magazijn Item Leen Info</h2>
+        <hr>
+        <div class="gebruiker-inner-form">
+            <label>Naam</label>
+            <label>Barcode</label>
+            <input readonly type="text" name="naam" value="{{item['naam']}}">
+            <input readonly type="text" name="barcode" value="{{barcode}}">
+            <label>Locatie</label>
+            <label>Lener</label>
+            <input readonly type="text" value="{{ item['lokaal']}} | Kast {{item['kast']}}"}}>
+            <input readonly type="text" value="{{ users['voornaam']}} {{ users['achternaam']}}">
+            <label>Geleend op</label>
+            <label>Project</label>
+            <input readonly value="{{tijd}}">
+            <input placeholder="Geef een project naam" name="project">
+        </div>
+        <textarea maxlength="400" onkeyup="countChar(this)" placeholder="Geef kleine uitleg voor wat je het item gebruikt" class="leen-gebruik" name="gebruik"></textarea><br>
+        <div style="float: right; margin-right: 10%; font-size: 80%"><p style="display: inline" id="charNum">400</p>/400</div><br>
+        <input type="submit" class="submit" value="Lenen">
+    </form>
+</div>
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+<script>
+    function countChar(val) {
+        var len = val.value.length;
+        if (len >= 400) {
+            val.value = val.value.substring(0, 400);
+        } else {
+            $('#charNum').text(400 - len);
+        }
+    };
+</script>
+{% endblock %}

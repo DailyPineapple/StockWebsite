@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="gebruiker-block">
+    <form class="gebruiker-create-form" method="post">
+        <h2>Gebruiker {{ gebruiker['voornaam']}} Aanpassen</h2>
+        <hr>
+        <div class="gebruiker-inner-form">
+            <label>Naam</label>
+            <label>Achternaam</label>
+            <input type="text" value="{{ gebruiker['voornaam']}}" name="naam">
+            <input type="text" value="{{ gebruiker['achternaam']}}" name="achternaam">
+            <label>Groep</label><br id="select2br">
+            <label id="select2label">Andere groep</label>
+            <select id="select1" onchange="other();" name="group">
+                <option selected value="{{ gebruiker['groep']}}">{{ gebruiker['groep']}}</option>
+                <option></option>
+                <option>6TI-ICT</option>
+                <option>5TI-ICT</option>
+                <option>Leerkracht</option>
+                <option>Collega</option>
+                <option>Extern</option>
+                {% for groeps in groep %}
+                <option>{{ groeps['groep'] }}</option>
+                {% endfor %}
+                <option value="other">Andere</option>
+            </select>
+            <input id="select2in" name="andere">
+        </div>
+        <input type="submit" class="submit" value="Edit">
+        <br><div id="gebruiker-reset-button" class="gebruiker-reset"><a onclick="conf()">Wachtwoord Reset</a></div>
+    </form>
+    <div class="gebruiker-confirm-box"  id="confirm-form2">
+        <div class="gebruiker-confirm">
+            <H2>Confirm</H2>
+            <hr>
+            <p>Weet u zeker dat u het wachtwoord wilt reseten voor {{ gebruiker['voornaam']}} {{ gebruiker['achternaam']}}</p>
+            <div class="gebruiker-confirm-inner">
+                <a onclick="abortconf()">Neen</a>
+                <a href="{{ url_for('passreset', gebruiker_id = gebruiker['id'])}}">Ja</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+{% endblock %}

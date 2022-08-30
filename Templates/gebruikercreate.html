@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="gebruiker-block">
+    <form class="gebruiker-create-form" method="post">
+        <h2>Gebruiker Aanmaken</h2>
+        <hr>
+        <div class="gebruiker-inner-form">
+            <label>Naam</label>
+            <label>Achternaam</label>
+            <input type="text" name="naam">
+            <input type="text" name="achternaam">
+            <label>Wachtwoord</label>
+            <label>Wachtwoord Bevesteging</label>
+            <input type="text" name="wachtwoord">
+            <input type="text" name="wachtwoordconf">
+            <label>Groep</label><br id="select2br">
+            <label id="select2label">Andere groep</label>
+            <select id="select1" onchange="other();" name="group">
+                <option></option>
+                <option>6TI-ICT</option>
+                <option>5TI-ICT</option>
+                <option>Leerkracht</option>
+                <option>Collega</option>
+                <option>Extern</option>
+                {% for gebruiker in gebruikers %}
+                <option>{{ gebruiker['groep'] }}</option>
+                {% endfor %}
+                <option value="other">Andere</option>
+            </select>
+            <input id="select2in" name="andere">
+        </div>
+        <input type="submit" class="submit" value="Create">
+    </form>
+</div>
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="gebruiker-block">
+    <div class="gebruiker-create-form">
+        <h2>Gebruiker {{ gebruiker['voornaam']}} Info</h2>
+        <hr>
+        <div class="gebruiker-inner-form">
+            <label>Naam</label>
+            <label>Achternaam</label>
+            <input type="text" value="{{ gebruiker['voornaam']}}" readonly>
+            <input type="text" value="{{ gebruiker['achternaam']}}" readonly>
+            <p></p>
+            <p></p>
+            <label>Groep</label>
+            <label>E-Mail</label>
+            <input type="text" value="{{ gebruiker['groep']}}" readonly>
+            <input type="text" value="{{ gebruiker['email']}}" readonly>
+            <p></p>
+            <p></p>
+            <label>Telefoon Nr°</label>
+            <label>Geboorte Datum</label>
+            <input type="text" value="{{ gebruiker['telefoon']}}" readonly>
+            <input type="date" value="{{ gebruiker['geboorte']}}" readonly>
+            <p></p>
+            <p></p>
+            <label>Aantal geleende items</label>
+            <br>
+            <input type="text" value="{{ aantal}} Item(s) geleend" readonly>
+        </div>
+    </div>
+</div>
+{% endblock %}

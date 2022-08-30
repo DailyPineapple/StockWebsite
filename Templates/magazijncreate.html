@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="magazijn-block">
+    <form class="gebruiker-create-form" method="post">
+        <h2>Magazijn Item Aanmaken</h2>
+        <hr>
+        <div class="gebruiker-inner-form">
+            <label>Naam</label>
+            <label>Barcode</label>
+            <input type="text" name="naam">
+            <input type="text" name="barcode">
+            <label>Locatie</label><br id="select2br">
+            <label id="select2label">Andere groep</label>
+            <select id="select1" onchange="other();" name="locatie">
+                {% for locatie in locaties %}
+                <option value="{{locatie['locatie_id']}}">{{ locatie['lokaal'] }} | Kast {{ locatie['kast'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" class="submit" value="Create">
+    </form>
+</div>
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+{% endblock %}

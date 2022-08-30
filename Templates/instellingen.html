@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="gebruiker-block" >
+    <form class="gebruiker-create-form" method="post">
+        <h2>Gebruiker {{ gebruiker['voornaam']}} Instellingen</h2>
+        <hr>
+        <div class="gebruiker-inner-form">
+            <label>Naam</label>
+            <label>Achternaam</label>
+            <input type="text" value="{{ gebruiker['voornaam']}}" name="naam">
+            <input type="text" value="{{ gebruiker['achternaam']}}" name="achternaam">
+            <label>Oud Wachtwoord</label>
+            <label>Geboorte datum</label>
+            <input type="password" name="oldpass" placeholder="Oude wachtwoord">
+            <input type="date" min="1970-01-01" placeholder="dd-mm-yyyy" value="{{ gebruiker['geboorte']}}" name="date">
+            <label>Nieuw wachtwoord</label>
+            <label>Telefoon Nr°</label>
+            <input type="password" placeholder="Nieuw Wachtwoord" name="newpass">
+            <input type="tel" value="{{ gebruiker['telefoon']}}" name="tel">
+            <label>Nieuw wachtwoord Bevesteging</label>
+            <label>E-Mail</label>
+            <input type="password" placeholder="Nieuw Wachtwoord bevestig" name="newpassconf">
+            <input type="email" value="{{ gebruiker['email']}}" name="email">
+
+        </div>
+        <input type="submit" class="submit" value="Edit">
+    </form>
+</div>
+{% endblock %}

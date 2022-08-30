@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="gebruiker-block">
+    <form class="gebruiker-create-form" method="post">
+        <h2>Component Aanmaken</h2>
+        <hr>
+        <div class="gebruiker-inner-form">
+            <label>Naam</label>
+            <label>Barcode</label>
+            <input type="text" name="naam" value="{{ comp['naam']}}">
+            <input type="text" name="barcode" value="{{ comp['barcode']}}">
+            <label>Aantal</label>
+            <label>Type</label>
+            <input type="number" name="aantal" value="{{ comp['aantal']}}">
+            <select name="type">
+                <option>{{ comp['type']}}</option>
+                <option disabled></option>
+                {% for type in types %}
+                <option>{{ type['naam']}}</option>
+                {% endfor %}
+            </select>
+            <label>Locatie</label><br id="select2br">
+            <label id="select2label">Andere groep</label>
+            <select id="select1" onchange="other();" name="locatie">
+                <option value="{{comp['locatie_id']}}">{{ comp['lokaal']}} | Kast {{comp['kast']}}</option>
+                <option disabled></option>
+                {% for locatie in locaties %}
+                <option value="{{locatie['locatie_id']}}">{{ locatie['lokaal'] }} | Kast {{ locatie['kast'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" class="submit" value="Edit">
+    </form>
+</div>
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="locatie-block">
+    <div class="locatie-info">
+        <h2>Locatie info : Kast {{ locatie['kast']}} | Lokaal {{ locatie['lokaal']}}</h2>
+        <hr>
+        <div class="locatie-info-block">
+            <div class="locatie-info-inhoud1">
+                <h2>Inhoud kast Stock</h2>
+                <hr>
+                <div class="locatie-info-balk-inhoud">
+                    <p>Naam</p>
+                    <p>Aantal</p>
+                    <p>Barcode</p>
+                </div>
+                <div class="locatie-overflow-inhoud">
+                    {% for inhoud in inhouds %}
+                    <div class="locatie-info-balk-inhoud">
+                        <p>{{ inhoud['naam']}}</p>
+                        <p>{{ inhoud['aantal']}}</p>
+                        <p>{{ inhoud['barcode'] }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="locatie-info-inhoud1">
+                <h2>Inhoud kast Magazijn</h2>
+                <hr>
+                <div class="locatie-info-balk-inhoud">
+                    <p>Naam</p>
+                    <p>Aantal</p>
+                    <p>Barcode</p>
+                </div>
+                <div class="locatie-overflow-inhoud">
+                    {% for inhoud in inhoudm %}
+                    <div class="locatie-info-balk-inhoud">
+                        <p>{{ inhoud['naam']}}</p>
+                        <p>{{ inhoud['aantal']}}</p>
+                        <p>{{ inhoud['barcode'] }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="locatie-info-inhoud2">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="magazijn-block" onload="checkleen()">
+    <div class="gebruiker-create"><a href="{{ url_for('magazijn_create')}}">Create</a></div>
+    <div class="magazijn-info">
+        <h2>Componenten</h2>
+        <input class="magazijn-search" id="myInput" type="text" placeholder="Zoeken..">
+        <form style="display: inline-block; width: 36%" method="post">
+            <input type="text" class="magazijn-barcode" placeholder="Lenen via barcode" name="barcode">
+            <input type="submit" hidden>
+        </form>
+        <hr>
+        <div class="magazijn-info-balk">
+            <p>Naam</p>
+            <p>Barcode</p>
+            <p>Locatie</p>
+            <p>Uitgeleend</p>
+            <p>Info</p>
+            <p>Uitlenen</p>
+            <p>Edit</p>
+            <p>Delete</p>
+        </div>
+        <div class="magazijn-overflow" id="myTable">
+            {% for magazijn in magazijns %}
+            <div class="magazijn-info-balk">
+                <p>{{ magazijn['naam'] }}</p>
+                <p>{{ magazijn['barcode']}}</p>
+                <p>{{ magazijn['lokaal']}} | Kast {{ magazijn['kast']}}</p>
+                <p>{{ magazijn['uitgeleend']}}</p>
+                <a class="magazijn-info-button" href="{{ url_for('magazijn_info', magazijn_id = magazijn['id_mag']) }}">Info</a>
+                <a class="magazijn-uitleen-button Leen{{magazijn['uitgeleend']}}" href="{{ url_for('magazijn_leen', magazijn_id = magazijn['id_mag']) }}">↑</a>
+                <a class="magazijn-uitleen-button Terug{{magazijn['uitgeleend']}}" href="{{ url_for('magazijn_terug', magazijn_id = magazijn['id_mag']) }}">↓</a>
+                <a class="magazijn-edit-button" href="{{ url_for('magazijn_edit', magazijn_id = magazijn['id_mag'])}}">Edit</a>
+                <a class="magazijn-del-button" href="{{ url_for('magazijn_del', magazijn_id = magazijn['id_mag']) }}">X</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable div").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% endblock %}

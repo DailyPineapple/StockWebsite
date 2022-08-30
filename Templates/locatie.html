@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="locatie-block">
+    <div class="gebruiker-create"><a href="{{ url_for('locatie_create')}}">Create</a></div>
+    <div class="locatie-info">
+        <h2>Locaties</h2>
+        <input class="locatie-search" id="myInput" type="text" placeholder="Search..">
+        <hr>
+        <div class="locatie-info-balk">
+            <p>Kast</p>
+            <p>Lokaal</p>
+            <p>Info</p>
+            <p>Delete</p>
+        </div>
+        <div class="locatie-overflow" id="myTable">
+            {% for locatie in locaties %}
+            <div class="locatie-info-balk">
+                <p>Kast {{ locatie['kast'] }}</p>
+                <p>{{ locatie['lokaal']}}</p>
+                <a class="locatie-info-button" href="{{ url_for('locatie_info', locatie_id = locatie['locatie_id'])}}">Info</a>
+                <a class="locatie-del-button" href="{{ url_for('locatie_del', locatie_id = locatie['locatie_id']) }}">X</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable div").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% endblock %}

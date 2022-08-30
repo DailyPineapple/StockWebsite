@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="stock-block">
+    <div class="stock-info">
+        <h2>Info Component: {{ stocks['naam'] }} {{ stocks['type']}}</h2>
+        <hr>
+        <div>
+            <div class="stock-log-balk">
+                <p>Naam</p>
+                <p>Item Naam</p>
+                <p>Aantal</p>
+                <p>Laatst genomen</p>
+            </div>
+            <div class="stock-overflow">
+                {% for log in logs %}
+                <div class="stock-log-balk">
+                    <p>{{ log['voornaam'] }} {{ log['achternaam'] }}</p>
+                    <p>{{ log['naam']}}</p>
+                    <p>{{ log['aantal']}}</p>
+                    <p>{{ log['datum']}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

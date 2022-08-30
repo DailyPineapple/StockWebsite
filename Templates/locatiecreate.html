@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="locatie-block">
+    <div class="locatie-info" style="width: 40vw">
+        <h2>Locatie Create</h2>
+        <hr>
+        <form method="post">
+            <label>Kast</label><br>
+            <input name="kast" type="number" placeholder="ALLEEN CIJFER">
+            <br><br><br><br>
+            <label>Lokaal</label><br>
+            <select onchange="other2()" name="lokaal" id="select2">
+                {% for lokaal in lokalen %}
+                <option>{{lokaal['lokaal']}}</option>
+                {% endfor %}
+                <option value="other">Ander lokaal</option>
+            </select>
+            <br><br><br><br>
+            <div id="input2" style="display: none">
+                <label>Ander Lokaal</label><br>
+                <input name="andere">
+            </div>
+            <br>
+            <input class="submit" type="submit" value="Create">
+        </form>
+    </div>
+</div>
+{% endblock %}

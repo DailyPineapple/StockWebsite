@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="gebruiker-block">
+    <div class="gebruiker-create"><a href="{{ url_for('gebruiker_create')}}">Create</a></div>
+    <div class="gebruiker-info">
+        <h2>Gebruikers</h2>
+        <input class="gebruiker-search" id="myInput" type="text" placeholder="Search..">
+        <hr>
+        <div class="gebruiker-info-balk">
+            <p>Naam</p>
+            <p>Ingelogd</p>
+            <p>Inlog Tijd</p>
+            <p>Inlog IP</p>
+            <p>Groep</p>
+            <p>Info</p>
+            <p>Logout</p>
+            <p>Edit</p>
+            <p>Block</p>
+            <p>Delete</p>
+        </div>
+        <div class="gebruiker-overflow" id="myTable">
+            {% for gebruiker in gebruikers %}
+            <div class="gebruiker-info-balk">
+                <p>{{ gebruiker['voornaam'] }} {{ gebruiker['achternaam']}}</p>
+                <p>{{ gebruiker['inlog']}}</p>
+                <p>{{ gebruiker['inlogtijd']}}</p>
+                <p>{{ gebruiker['ip']}}</p>
+                <p>{{ gebruiker['groep']}}</p>
+                <a class="gebruiker-info-button" href="{{ url_for('gebruiker_info', gebruiker_id = gebruiker['id'])}}">Info</a>
+                <a class="gebruiker-logout-button" href="{{ url_for('logoutid', gebruiker_id = gebruiker['id'])}}">Logout</a>
+                <a class="gebruiker-edit-button" href="{{ url_for('gebruiker_edit', gebruiker_id = gebruiker['id'])}}">Edit</a>
+                <a class="gebruiker-block-button block{{ gebruiker['block']}}" href="
+                {{ url_for('block', gebruiker_id = gebruiker['id'])}}"><span class="material-symbols-outlined"
+                                                                             style="font-size: 90%">
+                    lock_open</span></a>
+                 <a class="gebruiker-block-button unblock{{ gebruiker['block']}}" href="
+                 {{ url_for('unblock', gebruiker_id = gebruiker['id'])}}">
+                     <span class="material-symbols-outlined" style="font-size: 90%">lock</span></a>
+                <a class="gebruiker-del-button" href="{{ url_for('gebruiker_del', gebruiker_id = gebruiker['id']) }}">X</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable div").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% endblock %}

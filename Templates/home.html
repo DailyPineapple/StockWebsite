@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div class="home-grid">
+        <div class="home-grid-block">
+            <h2>Beschikbare stock</h2>
+            <div></div>
+            <hr>
+            <div class="home-item-stock">
+                <p>Naam</p>
+                <p>Locatie</p>
+                <p>Barcode</p>
+                <p>Aantal</p>
+            </div>
+            <div class="home-overflow">
+                {% for stocks in stock %}
+                    <div class="home-item-stock">
+                        <p>{{ stocks['naam'] }}</p>
+                        <p>{{ stocks['lokaal'] }} | Kast {{stocks['kast']}}</p>
+                        <p>{{ stocks['barcode'] }}</p>
+                        <p>{{ stocks['aantal']}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="home-grid-block">
+            <h2>Uitgeleende items</h2>
+            <hr>
+            <div class="home-item-uit">
+                <p>Lener</p>
+                <p>Item Naam</p>
+                <p>Barcode</p>
+                <p>Uitgeleend op</p>
+            </div>
+            <div class="home-overflow">
+                {% for uitgeleende in uitgeleend %}
+                <div class="home-item-uit">
+                    <p>{{ uitgeleende['voornaam']}} {{ uitgeleende['achternaam']}}</p>
+                    <p>{{ uitgeleende['naam'] }}</p>
+                    <p>{{ uitgeleende['barcode']}}</p>
+                    <p>{{ uitgeleende['datumuit']}}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
